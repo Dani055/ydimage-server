@@ -10,6 +10,8 @@
 
 # production
 /build
+npm-debug.log
+/*.env
 
 # misc
 .DS_Store

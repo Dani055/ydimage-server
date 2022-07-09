@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "start": "node index.js"
   },
   "author": "Yordan Doykov",
   "license": "ISC",
@@ -15,5 +15,8 @@
     "multer": "^1.4.5-lts.1",
     "path": "^0.12.7",
     "uuid": "^8.3.2"
+  },
+  "engines": {
+    "node": "18.x"
   }
 }
