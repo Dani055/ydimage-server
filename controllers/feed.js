@@ -1,24 +1,27 @@
+var s3 = require('../s3.js');
+const FormData = require('form-data');
+
 module.exports = {
     test: (req, res) => {
         res.send("Hello world!")
     },
-    
+    GetS3Url: (req, res) => {
+        res.send("Hello world!")
+    },
     UploadImage: async (req, res, next) => {
         try {
+            const results = await s3.uploadPhotos(req.files);
             let urls = [];
-            req.files.forEach(element => {
-                urls.push(req.protocol + '://' + req.get('host') + "/" + element.path.replaceAll('\\', '/'));
-            })
-
-            urls.forEach(element => {
-                console.log(element);
+            results.forEach(result => {
+                urls.push(result.Location)
             });
-            res.status(200).json({
-                message: "Upload successfull",
-                urls: urls
+            return res.status(200).json({
+                message: `Uploaded ${req.files.length} files`,
+                links: urls
             })
             
         } catch (error) {
+            console.log(error)
             res.status(500)
             .json({
                 error

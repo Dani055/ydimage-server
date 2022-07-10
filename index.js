@@ -4,7 +4,8 @@ const bodyParser = require('body-parser');
 const port = process.env.PORT || 9999;
 var app = express();
 const cors = require('cors');
-const feedRoutes = require("./routes/feed")
+const feedRoutes = require("./routes/feed");
+const multer = require('multer');
 
 app.use(cors());
 app.use(bodyParser.json());
@@ -20,6 +21,18 @@ app.use('/feed', feedRoutes);
 
 // General error handling
 app.use((error, req, res, next) => {
+    if(error instanceof multer.MulterError){
+      if(error.code == "LIMIT_FILE_SIZE"){
+        return res.status(500).json({
+          message: "One of the files is too large. Upload canceled"
+        })
+      }
+      else if(error.code == "LIMIT_FILE_COUNT"){
+        return res.status(500).json({
+          message: "Selected too many files for upload. Upload canceled"
+        })
+      }
+    }
     const status = error.statusCode || 500;
     const message = error.message;
     res.status(status).json({ message: message });
