@@ -1,5 +1,4 @@
 var {S3} = require('aws-sdk');
-var dotenv = require('dotenv');
 
 
 

@@ -6,6 +6,7 @@ var app = express();
 const cors = require('cors');
 const feedRoutes = require("./routes/feed");
 const multer = require('multer');
+const dotenv = require('dotenv').config();
 
 app.use(cors());
 app.use(bodyParser.json());
