@@ -1,11 +1,7 @@
 var s3 = require('../s3.js');
-const FormData = require('form-data');
 
 module.exports = {
     test: (req, res) => {
-        res.send("Hello world!")
-    },
-    GetS3Url: (req, res) => {
         res.send("Hello world!")
     },
     UploadImage: async (req, res, next) => {
