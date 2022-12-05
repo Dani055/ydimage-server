@@ -1,11 +1,8 @@
 var {S3} = require('aws-sdk');
 
-
-
 module.exports = {
     uploadPhotos: async function (files){
-        dotenv.config()
-        
+
         const s3 = new S3()
 
         const params = files.map(file => {
