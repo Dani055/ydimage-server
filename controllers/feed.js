@@ -11,6 +11,7 @@ module.exports = {
             results.forEach(result => {
                 urls.push(result.Location)
             });
+            
             return res.status(200).json({
                 message: `Uploaded ${req.files.length} files`,
                 links: urls
