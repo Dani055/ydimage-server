@@ -1,8 +1,9 @@
-const router = require('express').Router();
-const feedController = require('../controllers/feed');
-var multer  = require('multer');
+import { Router } from 'express';
+import multer from 'multer';
+import { UploadImage, test } from '../controllers/feed.js';
 
-var storage = multer.memoryStorage()
+const router = Router();
+const storage = multer.memoryStorage()
 
 const upload = multer({ storage: storage, limits: {fileSize: 1 * 1024 * 1024 * 3, files: 10}, fileFilter: (req, file, cb) => {
     console.log(file)
@@ -18,11 +19,10 @@ const upload = multer({ storage: storage, limits: {fileSize: 1 * 1024 * 1024 * 3
 })
 
 
-router.get('/', feedController.test);
-router.post('/uploadimg', upload.array('photo'), feedController.UploadImage);
+router.get('/', test);
+router.post('/uploadimg', upload.array('photo'), UploadImage);
 
-
-module.exports = router;
+export default router;
 
 // destination: function (req, file, cb) {
 //     cb(null, './images/')

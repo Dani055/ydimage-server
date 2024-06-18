@@ -1,18 +1,20 @@
-const dotenv = require('dotenv').config()
-var express = require('express');
-const bodyParser = require('body-parser');
-const port = process.env.PORT || 9999;
-var app = express();
-const cors = require('cors');
-const feedRoutes = require("./routes/feed");
-const multer = require('multer');
+import dotenv from 'dotenv';
+dotenv.config()
+import express from 'express';
+import bodyParser from 'body-parser';
+import cors from 'cors';
 
+const port = process.env.PORT || 9999;
+const app = express();
+
+import multer from 'multer';
+import feedRoutes from './routes/feed.js'
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use((req, res, next) => {
   res.setHeader('Access-Control-Allow-Origin', '*');
-  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, GET, POST, PUT, PATCH, DELETE');
+  res.setHeader('Access-Control-Allow-Methods', 'OPTIONS, POST, DELETE');
   res.setHeader('Access-Control-Allow-Headers', 'Content-Type, Authorization', 'Content-Type: multipart/form-data');
   next();
 });
